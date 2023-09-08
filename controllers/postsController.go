@@ -65,9 +65,11 @@ func UpdatePost(c *gin.Context) {
 		Body  string
 	}
 	c.Bind(&body)
-	post.Body = body.Body
-	post.Title = body.Title
-	initializers.DB.Save(&post)
+	
+	initializers.DB.Model(&post).Updates(models.Post{
+		Title: body.Title,
+		Body: body.Body,
+	})
 	c.JSON(201, gin.H{
 		"post": post,
 	})
