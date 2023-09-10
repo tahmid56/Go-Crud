@@ -13,11 +13,15 @@ import (
 func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectToDatabase()
+	initializers.SyncDatabase()
 }
 
 func main() {
 
 	r := gin.Default()
+
+	r.POST("/sign-up", controllers.SignUp)
+
 	r.POST("/posts", controllers.PostsCreate)
 	r.GET("/posts", controllers.GetPosts)
 	r.GET("/posts/:id", controllers.GetPost)
