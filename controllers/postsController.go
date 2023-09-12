@@ -27,6 +27,7 @@ func PostsCreate(c *gin.Context) {
 }
 
 func GetPosts(c *gin.Context) {
+	// user := c.MustGet("userid").(string)
 	var posts []models.Post
 	initializers.DB.Find(&posts)
 	c.JSON(200, gin.H{

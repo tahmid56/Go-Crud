@@ -8,6 +8,7 @@ import (
 	// "github.com/tahmid56/go-crud/controllers"
 	"github.com/tahmid56/go-crud/controllers"
 	"github.com/tahmid56/go-crud/initializers"
+	"github.com/tahmid56/go-crud/middleware"
 )
 
 func init() {
@@ -21,6 +22,9 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/sign-up", controllers.SignUp)
+	r.POST("/sign-in", controllers.SignIn)
+	r.Use(middleware.RequireAuth)
+	r.GET("/validate", controllers.Validate)
 
 	r.POST("/posts", controllers.PostsCreate)
 	r.GET("/posts", controllers.GetPosts)
