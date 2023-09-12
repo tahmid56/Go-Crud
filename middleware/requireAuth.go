@@ -15,6 +15,7 @@ func RequireAuth(c *gin.Context){
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"message": "User Not Authorized",
 		})
+		c.Abort()
 		return
 	}
 
